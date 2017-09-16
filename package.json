@@ -9,7 +9,7 @@
     "emitter",
     "listener"
   ],
-  "main": "./dist/index.js",
+  "main": "./dist/EventDispatcher.js",
   "scripts": {
     "build": "rm -rf ./dist/ && tsc",
     "clean": "rm -rf ./dist/",
@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/malero/simple-ts-event-dispatcher",
   "git": "https://github.com/malero/simple-ts-event-dispatcher",
-  "typings": "./dist/index.d.ts",
+  "typings": "./dist/EventDispatcher.d.ts",
   "author": "Malero <contact@maleero.com> (http://www.maleero.com/)",
   "bugs": {
     "url": "https://github.com/malero/simple-ts-event-dispatcher/issues",
