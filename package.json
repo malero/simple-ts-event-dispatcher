@@ -13,8 +13,8 @@
   "scripts": {
     "build": "rm -rf dist/ && tsc",
     "clean": "rm -rf dist/",
-    "test": "nyc karma start --single-run",
-    "posttest": "nyc report --reporter=json && codecov -f coverage/*.json",
+    "test": "karma start --single-run",
+    "posttest": "codecov",
     "sample": "rm -rf sample/dist/ && tsc -p sample/ && node sample/dist/sample/index.js"
   },
   "license": "MIT",
