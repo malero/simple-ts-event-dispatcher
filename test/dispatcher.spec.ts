@@ -100,7 +100,7 @@ describe('EventDispatcher', () => {
         expect(cb3.calls).toBe(1);
         expect(dispatcher.unbind('event', key5)).toBe(false);
         expect(cb5.calls).toBe(1);
-        expect(dispatcher.unbind('event', key4)).toBe(false);
+        expect(dispatcher.unbind('event', key4)).toBe(true);
     });
 
     it("should only be called once", () => {
