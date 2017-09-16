@@ -102,38 +102,4 @@ describe('EventDispatcher', () => {
         expect(cb5.calls).toBe(1);
         expect(dispatcher.unbind('event', key4)).toBe(false);
     });
-
-    it("should only be called once", () => {
-        let onceCalls = 0,
-            normalCalls = 0;
-        dispatcher.once('event', () => {
-            // empty
-        });
-        dispatcher.once('event', () => {
-            onceCalls += 1;
-        });
-        dispatcher.once('event', () => {
-            // empty
-        });
-        dispatcher.bind('event', () => {
-            normalCalls += 1;
-        });
-        dispatcher.trigger('event');
-        dispatcher.trigger('event');
-        dispatcher.trigger('event');
-        dispatcher.trigger('event');
-        expect(onceCalls).toBe(1);
-        expect(normalCalls).toBe(4);
-    });
-
-    it("should only be called once with nested event triggers", () => {
-        let onceCalls = 0,
-            normalCalls = 0;
-        const key = dispatcher.once('event', () => {
-                dispatcher.trigger('event');
-            }),
-            cb = dispatcher.getListener('event', key);
-        dispatcher.trigger('event');
-        expect(cb.calls).toBe(1);
-    });
 });
