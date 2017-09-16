@@ -93,7 +93,7 @@ export class EventDispatcher  {
 
         // Loop through the list backwards so we can pop off .once callbacks
         for(let i = this._listeners[event].length - 1; i >= 0; i--) {
-            const cb = this._listeners[event][i];
+            const cb: EventCallback = this._listeners[event][i];
 
             // We need to unbind callbacks before they're called to prevent
             // infinite loops if the event is somehow triggered within the
