@@ -81,7 +81,7 @@ export class EventDispatcher  {
         return cnt;
     }
 
-    getListener(event: string, key: number): EventCallback {
+    getListener(event: string, key: number): EventCallback | undefined {
         for(const cb of this._listeners[event]) {
             if(key == cb.key)
                 return cb;
