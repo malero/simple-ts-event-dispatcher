@@ -148,4 +148,12 @@ describe('EventDispatcher', () => {
             cb = dispatcher.getListener('event', key);
         dispatcher.trigger('event', 1, [1,2,3], {foo:'bar'});
     });
+
+    it("cannot call a once event more than once", () => {
+        const key = dispatcher.once('event', () => {}),
+            cb = dispatcher.getListener('event', key);
+        dispatcher.trigger('event');
+        expect(cb.call()).toBe(false);
+        expect(cb.calls).toBe(1);
+    });
 });
