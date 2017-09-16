@@ -7,19 +7,19 @@ export interface EventCallbackList {
 export class EventCallback {
     public calls: number;
     constructor(
-        public fnc: any,
-        public key: number,
-        public once: boolean = false,
-        public context?: any,
+        public readonly fnc: any,
+        public readonly key: number,
+        public readonly once: boolean = false,
+        public readonly context?: any,
     ) {
         this.calls = 0;
     }
 
-    call(args): boolean {
+    call(...args: any[]): boolean {
         if(this.once && this.calls > 0)
             return false;
 
-        this.fnc.apply(this.context, args);
+        this.fnc.apply(this.context, ...args);
         this.calls += 1;
         return true;
     }
