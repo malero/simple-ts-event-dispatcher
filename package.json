@@ -14,7 +14,7 @@
     "build": "rm -rf ./dist/ && tsc",
     "clean": "rm -rf ./dist/",
     "test": "karma start --single-run",
-    "posttest": "codecov -f coverage/*.json",
+    "posttest": "codecov",
     "sample": "rm -rf sample/dist/ && tsc -p sample/ && node sample/dist/sample/index.js"
   },
   "license": "MIT",

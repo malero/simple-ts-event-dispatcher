@@ -136,4 +136,16 @@ describe('EventDispatcher', () => {
         dispatcher.trigger('event');
         expect(cb.calls).toBe(1);
     });
+
+    it("should pass arguments", () => {
+        const key = dispatcher.once('event', (num, arr, obj) => {
+                expect(num).toBe(1);
+                expect(arr[0]).toBe(1);
+                expect(arr[1]).toBe(2);
+                expect(arr[2]).toBe(3);
+                expect(obj.foo).toBe('bar');
+            }),
+            cb = dispatcher.getListener('event', key);
+        dispatcher.trigger('event', 1, [1,2,3], {foo:'bar'});
+    });
 });
