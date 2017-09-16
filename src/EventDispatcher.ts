@@ -101,7 +101,7 @@ export class EventDispatcher  {
             if(cb.once)
                 this.unbind(event, cb.key);
 
-            cb.call.call(cb, args);
+            cb.call(args);
         }
     }
 }
