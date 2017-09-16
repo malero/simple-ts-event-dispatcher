@@ -35,7 +35,7 @@ export class EventDispatcher  {
         this._listeners = {};
     }
 
-    bind(event: string, fct: () => any, context?: any, once?: boolean): number {
+    bind(event: string, fct: (...args: any[]) => any, context?: any, once?: boolean): number {
         once = once || false;
         this._lastKey++;
         this._listeners[event] = this._listeners[event] || [];
@@ -43,7 +43,7 @@ export class EventDispatcher  {
         return this._lastKey;
     }
 
-    once(event: string, fct: () => any, context?: any): number {
+    once(event: string, fct: (...args: any[]) => any, context?: any): number {
         return this.bind(event, fct, context, true);
     }
 
@@ -93,7 +93,7 @@ export class EventDispatcher  {
 
         // Loop through the list backwards so we can pop off .once callbacks
         for(let i = this._listeners[event].length - 1; i >= 0; i--) {
-            const cb = this._listeners[event][i];
+            const cb: EventCallback = this._listeners[event][i];
 
             // We need to unbind callbacks before they're called to prevent
             // infinite loops if the event is somehow triggered within the
@@ -101,7 +101,7 @@ export class EventDispatcher  {
             if(cb.once)
                 this.unbind(event, cb.key);
 
-            cb.call.call(cb, args);
+            cb.call(args);
         }
     }
 }
