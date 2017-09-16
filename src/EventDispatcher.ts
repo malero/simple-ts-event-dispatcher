@@ -9,7 +9,7 @@ export class EventCallback {
     constructor(
         public readonly fnc: any,
         public readonly key: number,
-        public readonly once: boolean = false,
+        public readonly once: boolean,
         public readonly context?: any,
     ) {
         this.calls = 0;
