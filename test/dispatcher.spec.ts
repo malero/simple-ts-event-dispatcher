@@ -3,8 +3,8 @@ import { EventDispatcher } from "../src/EventDispatcher";
 
 describe('EventDispatcher', () => {
     let dispatcher: EventDispatcher = null,
-        dummy = null,
-        dummy2 = null;
+        dummy: any = null,
+        dummy2: any = null;
 
     beforeEach(() => {
         dispatcher = new EventDispatcher();
@@ -75,16 +75,16 @@ describe('EventDispatcher', () => {
     });
 
     it("should fail to unbind the once listeners", () => {
-        let key1 = dispatcher.once('event', dummy.callback, dummy),
-            cb1 = dispatcher.getListener('event', key1),
-            key2 = dispatcher.once('event', dummy.callback, dummy),
-            cb2 = dispatcher.getListener('event', key2),
-            key3 = dispatcher.once('event', dummy.callback, dummy),
-            cb3 = dispatcher.getListener('event', key3),
-            key4 = dispatcher.bind('event', dummy.callback, dummy),
-            cb4 = dispatcher.getListener('event', key4),
-            key5 = dispatcher.once('event', dummy.callback, dummy),
-            cb5 = dispatcher.getListener('event', key5);
+        let key1: number = dispatcher.once('event', dummy.callback, dummy),
+            cb1: any = dispatcher.getListener('event', key1),
+            key2: number = dispatcher.once('event', dummy.callback, dummy),
+            cb2: any = dispatcher.getListener('event', key2),
+            key3: number = dispatcher.once('event', dummy.callback, dummy),
+            cb3: any = dispatcher.getListener('event', key3),
+            key4: number = dispatcher.bind('event', dummy.callback, dummy),
+            cb4: any = dispatcher.getListener('event', key4),
+            key5: number = dispatcher.once('event', dummy.callback, dummy),
+            cb5: any = dispatcher.getListener('event', key5);
 
         dispatcher.trigger('event');
         dispatcher.trigger('event');
