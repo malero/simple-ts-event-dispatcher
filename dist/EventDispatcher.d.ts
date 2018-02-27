@@ -7,15 +7,16 @@ export declare class EventCallback {
     readonly once: boolean;
     readonly context: any;
     calls: number;
-    constructor(fnc: any, key: number, once?: boolean, context?: any);
+    constructor(fnc: any, key: number, once: boolean, context?: any);
     call(...args: any[]): boolean;
 }
+export declare type EventDispatcherCallback = (...args: any[]) => any;
 export declare class EventDispatcher {
     private _listeners;
     private _lastKey;
     constructor();
-    bind(event: string, fct: () => any, context?: any, once?: boolean): number;
-    once(event: string, fct: () => any, context?: any): number;
+    bind(event: string, fct: EventDispatcherCallback, context?: any, once?: boolean): number;
+    once(event: string, fct: EventDispatcherCallback, context?: any): number;
     unbind(event: string, key?: number): boolean;
     unbindWithContext(event: string, context: any): number;
     getListener(event: string, key: number): EventCallback | undefined;

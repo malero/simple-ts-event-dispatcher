@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var EventCallback = /** @class */ (function () {
     function EventCallback(fnc, key, once, context) {
-        if (once === void 0) { once = false; }
         this.fnc = fnc;
         this.key = key;
         this.once = once;
@@ -96,7 +95,7 @@ var EventDispatcher = /** @class */ (function () {
             // callback
             if (cb.once)
                 this.unbind(event, cb.key);
-            cb.call.call(cb, args);
+            cb.call(args);
         }
     };
     return EventDispatcher;

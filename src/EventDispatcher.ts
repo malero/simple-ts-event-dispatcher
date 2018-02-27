@@ -25,6 +25,8 @@ export class EventCallback {
     }
 }
 
+export type EventDispatcherCallback = (...args: any[]) => any;
+
 
 export class EventDispatcher  {
     private _listeners: EventCallbackList;
@@ -35,7 +37,7 @@ export class EventDispatcher  {
         this._listeners = {};
     }
 
-    bind(event: string, fct: (...args: any[]) => any, context?: any, once?: boolean): number {
+    bind(event: string, fct: EventDispatcherCallback, context?: any, once?: boolean): number {
         once = once || false;
         this._lastKey++;
         this._listeners[event] = this._listeners[event] || [];
@@ -43,7 +45,7 @@ export class EventDispatcher  {
         return this._lastKey;
     }
 
-    once(event: string, fct: (...args: any[]) => any, context?: any): number {
+    once(event: string, fct: EventDispatcherCallback, context?: any): number {
         return this.bind(event, fct, context, true);
     }
 
