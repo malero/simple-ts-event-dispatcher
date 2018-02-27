@@ -2,7 +2,7 @@ import { EventDispatcher } from "../src/EventDispatcher";
 
 
 describe('EventDispatcher', () => {
-    let dispatcher: EventDispatcher = null,
+    let dispatcher: EventDispatcher,
         dummy: any = null,
         dummy2: any = null;
 
@@ -129,10 +129,10 @@ describe('EventDispatcher', () => {
     it("should only be called once with nested event triggers", () => {
         let onceCalls = 0,
             normalCalls = 0;
-        const key = dispatcher.once('event', () => {
+        const key: number = dispatcher.once('event', () => {
                 dispatcher.trigger('event');
             }),
-            cb = dispatcher.getListener('event', key);
+            cb: any = dispatcher.getListener('event', key);
         dispatcher.trigger('event');
         expect(cb.calls).toBe(1);
     });
@@ -150,15 +150,15 @@ describe('EventDispatcher', () => {
     });
 
     it("cannot call a once event more than once", () => {
-        const key = dispatcher.once('event', () => {}),
-            cb = dispatcher.getListener('event', key);
+        const key: number = dispatcher.once('event', () => {}),
+            cb: any = dispatcher.getListener('event', key);
         dispatcher.trigger('event');
         expect(cb.call()).toBe(false);
         expect(cb.calls).toBe(1);
     });
 
     it("should not unbind anything and return 0", () => {
-        expect(dispatcher.unbindWithContext('event', this)).toBe(0);
+        expect(dispatcher.unbindWithContext('event', null)).toBe(0);
     });
 
     it("should not trigger events that don't exist", () => {
