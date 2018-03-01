@@ -164,4 +164,28 @@ describe('EventDispatcher', () => {
     it("should not trigger events that don't exist", () => {
         expect(dispatcher.trigger('event')).toBe(undefined);
     });
+
+    it("should trigger events in the correct order", () => {
+        let check: number = 1;
+        dispatcher.bind('event', () => {
+            expect(check).toBe(1);
+            check++;
+        });
+        dispatcher.bind('event', () => {
+            expect(check).toBe(2);
+            check++;
+        });
+        dispatcher.bind('event', () => {
+            expect(check).toBe(3);
+            check++;
+        });
+        dispatcher.bind('event', () => {
+            expect(check).toBe(4);
+            check++;
+        });
+        dispatcher.bind('event', () => {
+            expect(check).toBe(5);
+        });
+        dispatcher.trigger('event');
+    });
 });
