@@ -93,15 +93,16 @@ export class EventDispatcher  {
     trigger(event: string, ...args: any[]): void {
         if(event in this._listeners === false) return;
 
-        // Loop through the list backwards so we can pop off .once callbacks
-        for(let i = this._listeners[event].length - 1; i >= 0; i--) {
+        for(let i = 0; i < this._listeners[event].length; i++) {
             const cb: EventCallback = this._listeners[event][i];
 
             // We need to unbind callbacks before they're called to prevent
             // infinite loops if the event is somehow triggered within the
             // callback
-            if(cb.once)
+            if(cb.once) {
                 this.unbind(event, cb.key);
+                i--;
+            }
 
             cb.call(args);
         }
